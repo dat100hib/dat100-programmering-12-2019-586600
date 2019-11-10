@@ -1,72 +1,134 @@
 package no.hvl.dat100.jplab12.oppgave3;
 
-import no.hvl.dat100.jplab12.common.TODO;
 import no.hvl.dat100.jplab12.oppgave1.*;
 
 public class Blogg {
 
-	// TODO: objektvariable 
+	// TODO: objektvariable
+
+	private Innlegg[] innleggtabell;
+	private int nesteledig = 0;
 
 	public Blogg() {
-		throw new UnsupportedOperationException(TODO.constructor("Blogg"));
+
+		innleggtabell = new Innlegg[20];
+
+		// throw new UnsupportedOperationException(TODO.constructor("Blogg"));
 	}
 
 	public Blogg(int lengde) {
-		throw new UnsupportedOperationException(TODO.constructor("Blogg"));
+
+		innleggtabell = new Innlegg[lengde];
+
+		// throw new UnsupportedOperationException(TODO.constructor("Blogg"));
 	}
 
 	public int getAntall() {
-		throw new UnsupportedOperationException(TODO.method());
+
+		return nesteledig;
+
+		// throw new UnsupportedOperationException(TODO.method());
 	}
-	
+
 	public Innlegg[] getSamling() {
-		throw new UnsupportedOperationException(TODO.method());
+
+		return innleggtabell;
+
+		// throw new UnsupportedOperationException(TODO.method());
 
 	}
-	
+
 	public int finnInnlegg(Innlegg innlegg) {
 
-		throw new UnsupportedOperationException(TODO.method());
+		boolean funnet = false;
+		int pos = 0;
+
+		while (pos < nesteledig && !funnet) {
+
+			if (innleggtabell[pos].erLik(innlegg)) {
+
+				funnet = true;
+			}
+			pos++;
+		}
+
+		if (funnet) {
+
+			return pos;
+
+		} else {
+
+			return -1;
+		}
+
+		// throw new UnsupportedOperationException(TODO.method());
 	}
 
 	public boolean finnes(Innlegg innlegg) {
-		throw new UnsupportedOperationException(TODO.method());
+
+		boolean funnet = false;
+		int pos = 0;
+
+		while (pos < nesteledig && !funnet) {
+
+			if (innleggtabell[pos].erLik(innlegg)) {
+
+				funnet = true;
+			}
+			
+			pos++;
+		}
+
+		return funnet;
+
+		// throw new UnsupportedOperationException(TODO.method());
 	}
 
 	public boolean ledigPlass() {
-		throw new UnsupportedOperationException(TODO.method());
+
+		if (nesteledig < innleggtabell.length) {
+
+			return true;
+
+		} else {
+
+			return false;
+		}
+
+		// throw new UnsupportedOperationException(TODO.method());
 
 	}
-	
+
 	public boolean leggTil(Innlegg innlegg) {
 
-		throw new UnsupportedOperationException(TODO.method());
+		boolean finnes = finnes(innlegg);
+
+		if (!finnes && nesteledig < innleggtabell.length) {
+
+			innleggtabell[nesteledig] = innlegg;
+			nesteledig++;
+			return true;
+
+		} else {
+
+			return false;
+		}
+
+		// throw new UnsupportedOperationException(TODO.method());
 	}
-	
+
 	public String toString() {
-		throw new UnsupportedOperationException(TODO.method());
-	}
 
-	// valgfrie oppgaver nedenfor
-	
-	public void utvid() {
-		throw new UnsupportedOperationException(TODO.method());
-	}
-	
-	public boolean leggTilUtvid(Innlegg innlegg) {
+		String output = Integer.toString(nesteledig) + "\n";
 
-		throw new UnsupportedOperationException(TODO.method());
-		
-	}
-	
-	public boolean slett(Innlegg innlegg) {
-		
-		throw new UnsupportedOperationException(TODO.method());
-	}
-	
-	public int[] search(String keyword) {
-		
-		throw new UnsupportedOperationException(TODO.method());
+		for (int i = 0; i < nesteledig; i++) {
+
+			output += innleggtabell[i].toString();
+
+		}
+		return output;
 
 	}
+
+	// throw new UnsupportedOperationException(TODO.method());
 }
